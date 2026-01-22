@@ -1835,7 +1835,7 @@ Button for the 3 boxes
 
 /* Default banners for each game - ADD YOUR IMAGE PATHS */
 #game-banner.sims1-banner {
-    background-image: url('/assets/images/banners/sims1-banner.png');
+    background-image: url('assets/images/banners/sims1-banner.png');
 }
 
 #game-banner.wip1-banner {
