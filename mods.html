@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Seven7th Heaven | Mods</title>
+        <meta name="description" content="Seven7th Heaven - Heavenly solutions for mundane problems.">
+        
+        <!-- CSS -->
+        <!-- google fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+
+        <!-- files -->
+        <link rel="icon" href="assets/images/favicon.png" type="image/png">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/magnific-popup.css" rel="stylesheet">
+        <link href="assets/css/owl.carousel.css" rel="stylesheet">
+        <link href="assets/css/owl.carousel.theme.min.css" rel="stylesheet">
+        <link href="assets/css/ionicons.css" rel="stylesheet">
+        <link href="assets/css/main.css" rel="stylesheet">
+        <script src="assets/js/simoleons.js" defer></script>
+
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+         
+     </head>
+
+
+
+        <script>
+
+            // SIMPLEST DOWNLOAD COUNTER - Stores counts IN THE HTML ITSELF
+            (function() {
+                // Load counts from a hidden div or localStorage
+                function loadCount(modId) {
+                    // Try to get from localStorage first (persists across sessions)
+                    const stored = localStorage.getItem('modCount_' + modId);
+                    if (stored) return parseInt(stored);
+                    
+                    // Fallback: check for data-count attribute in HTML
+                    const element = document.querySelector('[data-mod="' + modId + '"]');
+                    if (element && element.getAttribute('data-count')) {
+                        return parseInt(element.getAttribute('data-count'));
+                    }
+                    
+                    return 0; // Default to 0
+                }
+                
+                // Save count
+                function saveCount(modId, count) {
+                    // Save to localStorage (persists)
+                    localStorage.setItem('modCount_' + modId, count);
+                    
+                    // Also update HTML data attribute (visible in page source)
+                    const element = document.querySelector('[data-mod="' + modId + '"]');
+                    if (element) {
+                        element.setAttribute('data-count', count);
+                    }
+                }
+                
+                // Track download
+                window.trackDownload = function(modId) {
+                    // Get current count
+                    let count = loadCount(modId);
+                    
+                    // Increment
+                    count++;
+                    
+                    // Save
+                    saveCount(modId, count);
+                    
+                    // Update display IMMEDIATELY
+                    const displayElements = document.querySelectorAll('[data-mod="' + modId + '"] .download-count');
+                    displayElements.forEach(el => {
+                        el.textContent = count;
+                    });
+                    
+                    // Allow download to proceed
+                    return true;
+                }
+                
+                // Initialize counts on page load
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Find all mods on page
+                    const modElements = document.querySelectorAll('[data-mod]');
+                    
+                    modElements.forEach(element => {
+                        const modId = element.getAttribute('data-mod');
+                        const count = loadCount(modId);
+                        
+                        // Update display
+                        const displayEl = element.querySelector('.download-count');
+                        if (displayEl) {
+                            displayEl.textContent = count;
+                        }
+                        
+                        // Ensure data-count attribute exists
+                        element.setAttribute('data-count', count);
+                    });
+                });
+            })();
+        </script>
+
+    <body>
+
+        <!-- Site Header -->
+        <div class="site-header-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="index.html"><img src="assets/images/logo.png" alt="logo" style="width: 200px; height: auto;"></a>
+                    </div>
+                    
+                    <!-- Counter Section -->
+                    <div style="flex: 1; min-width: 0; text-align: right; padding-left: 15px;">
+                        <div style="display: inline-block; text-align: left;">
+                            <!-- Counter Display -->
+                            <div style="text-align: right; margin-bottom: 2px; white-space: nowrap;">
+                                <span id="clickCount">
+                                    <span class="simoleon" style="font-weight:bold; font-size:1.5em;">§</span>
+                                    <span class="amount" style="font-weight:bold; font-size:1.5em;">0</span>
+                                </span>
+                                <span style="margin-left:6px; font-weight:bold; font-size:1.2em;">Heavenly Simoleons</span>
+                            </div>
+                            
+                            <!-- Buttons -->
+                            <div style="width: 100%;">
+                                <div class="btn-grid" style="display: grid; grid-template-columns: auto auto; gap: 0; width: 100%; box-sizing: border-box;">
+                                    <button id="counterBtn" class="btn btn-default btn-robot-blue" type="button" style="border-radius: 4px 0 0 4px; border-right: none; padding: 5px 12px; font-family: 'Oswald', sans-serif; font-weight: bold;font-size:1.2em;">
+                                        Pause Productively
+                                    </button>
+                                    <button id="spendBtn" class="btn btn-default btn-robot" type="button" style="border-radius: 0 4px 4px 0; padding: 5px 12px; font-family: 'Oswald', sans-serif; font-weight: bold;font-size:1.2em;">
+                                        PURCHASE ENLIGHTENMENT §25
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup -->
+        <div id="simPopup" class="sim-popup hidden">
+            <div class="sim-popup-content">
+                <p id="simPopupText"></p>
+                <button id="closePopup" class="btn btn-default btn-robot">
+                    OK
+                </button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <section id="header" class="main-header shop-header inner-header">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-default">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#site-nav-bar" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="site-nav-bar">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li class="active"><a href="mods.html">Mods</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                
+                <div class="intro row">
+                    <div class="overlay"></div>
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Mods</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="nutral"></div>
+        </section>
+
+<!-- Shop -->
+<section class="shop">
+    <div class="container page-bgc">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- BANNER SECTION -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box">
+                            <p>Archive of Approved Arcana</p>
+                            <h2 class="title mt0">M.O.D.S. Division<br>Mystical Operations & Divine Systems</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <p class="inner-p">
+                            Come, come browse our curious collection of reality tweaks and simulation adjustments.<br>From subtle quality-of-life incantations to full-blown divine interventions, we've got something for every aspiring technomancer.<br> Oh boy, here we go playing with the fabric of reality again...
+                        </p>
+                    </div>
+                </div>
+                <!-- Game Tabs Navigation - MOVED ABOVE BANNER -->
+                <div class="tab-buttons-container">
+                    <div class="tab-buttons">
+                        <!-- Left button - square left, diagonal right -->
+                        <a href="#" class="btn-oswald-yellow tab-btn tab-btn-left active" 
+                        data-tab="sims1" 
+                        data-title="The Sims (2000)" 
+                        data-banner="sims1-banner"
+                        data-subtitle="Divine interventions for classic simulation enthusiasts">
+                            <span class="btn-text">The Sims 1</span>
+                        </a>
+                        
+                        <!-- Additional Middle buttons - diagonal both sides -->
+                        <a href="#" class="btn-oswald-yellow tab-btn tab-btn-middle" 
+                        data-tab="wip1" 
+                        data-title="WIP-1 Mods" 
+                        data-banner="wip1-banner"
+                        data-subtitle="Coming soon... or never!">
+                            <span class="btn-text">WIP-1</span>
+                        </a>
+                        
+                        <a href="#" class="btn-oswald-yellow tab-btn tab-btn-middle" 
+                        data-tab="wip2" 
+                        data-title="WIP-2 Mods" 
+                        data-banner="wip2-banner"
+                        data-subtitle="Coming soon... or never!">
+                            <span class="btn-text">WIP-2</span>
+                        </a>
+                        
+                        <a href="#" class="btn-oswald-yellow tab-btn tab-btn-middle" 
+                        data-tab="wip3" 
+                        data-title="WIP-3 Mods" 
+                        data-banner="wip3-banner"
+                        data-subtitle="Coming soon... or never!">
+                            <span class="btn-text">WIP-3</span>
+                        </a>
+
+                        <a href="#" class="btn-oswald-yellow tab-btn tab-btn-middle" 
+                        data-tab="wip4" 
+                        data-title="WIP-4 Mods" 
+                        data-banner="wip4-banner"
+                        data-subtitle="Coming soon... or never!">
+                            <span class="btn-text">WIP-4</span>
+                        </a>
+                        
+                        <a href="#" class="btn-oswald-yellow tab-btn tab-btn-middle" 
+                        data-tab="wip5" 
+                        data-title="WIP-5 Mods" 
+                        data-banner="wip5-banner"
+                        data-subtitle="Coming soon... or never!">
+                            <span class="btn-text">WIP-5</span>
+                        </a>
+                        
+                        <!-- Right button - diagonal left, square right -->
+                        <a href="#" class="btn-oswald-yellow tab-btn tab-btn-right" 
+                        data-tab="wip6" 
+                        data-title="WIP-6 Mods" 
+                        data-banner="wip6-banner"
+                        data-subtitle="Coming soon... or never!">
+                            <span class="btn-text">WIP-6</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Game Tabs Navigation -->
+                
+                <!-- Dynamic Game Banner (same style as homepage) - MOVED BELOW BUTTONS -->
+                <div class="intro row dynamic-game-banner" id="game-banner">
+                    <div class="overlay"></div>
+                    <div class="col-sm-12">
+                        <div class="title-box">
+                            <p style="color: #fff; margin-bottom: 5px;">MODS FOR</p>
+                            <h1 class="title mt0" style="color: #fff; font-size: 48px; margin-bottom: 10px;">The Sims 1 Mods</h1>
+                            <p style="color: #fff; font-size: 18px; font-weight: 300;">
+                                Divine interventions for 
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- /.intro.row dynamic-game-banner -->
+            </div>
+        </div>
+        <!-- Mod Sections -->
+        <div class="mod-section active" id="mods-sims1">
+            <div class="row">
+                <div class="boxed">
+                    <!-- Single Mod per Row -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mod-item" data-mod="sims1-seven7hheaven" data-count="0">
+                                <!-- Mod Image with Download Overlay -->
+                                <div class="mod-image-container">
+                                    <div class="shop-box">
+                                        <img class="img-full img-responsive" src="assets/images/mods/sims1/sims1-mod-preview.png" alt="Seven7hHeaven - The Sims 1 Mod">
+                                        <div class="shop-box-hover text-center">
+                                            <div class="c-table">
+                                                <div class="c-cell">
+                                                    <!-- Single large download icon in center -->
+                                                            <a href="assets/downloads/ts1/TS1-Relationship-Rate-Rebalance-1-0.zip"
+                                                            class="mod-download-main"
+                                                            download
+                                                            title="Download"
+                                                            onclick="return trackDownload('sims1-seven7hheaven')">
+                                                                <span class="ion-ios-cloud-download-outline"></span>
+                                                            </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+<!-- Mod Basic Info -->
+<div class="mod-basic-info">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 style="color: white;">Relationship Rate Rebalance (RRR)</h3>
+            <p class="mod-description-short" style="color: #cccccc; font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                A comprehensive rebalance of The Sims 1's relationship decay and adjustment systems. Aiming to address the often times crippling relationship decay that made maintaining a large number of friendships overly burdensome for your Sim and you. Comes in 2 different flavors!
+            </p>
+            <div class="mod-meta" style="color: #999999; font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                <span class="mod-version"><strong style="color: #aaaaaa;">Version:</strong> 1.0</span>
+                <span class="mod-date"><strong style="color: #aaaaaa;">Updated:</strong> 2026</span>
+                <span class="mod-size"><strong style="color: #aaaaaa;">Size:</strong> 4KB</span>
+                <span class="mod-downloads"><strong style="color: #aaaaaa;">Downloads:</strong> <span class="download-count">0</span></span>
+            </div>
+        </div>
+    </div>
+</div>  
+
+<!-- Accordion Details (FAQ Style) -->
+<div class="mod-details-accordion">
+    <div id="accordion-mod-rrr" role="tablist" aria-multiselectable="true" class="panel-group">
+
+
+
+
+
+
+        
+        <!-- Features Section -->
+        <div class="panel panel-default">
+            <div id="heading-features-rrr" role="tab" class="panel-heading">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-mod-rrr" href="#collapse-features-rrr" aria-expanded="false" aria-controls="collapse-features-rrr" class="collapsed">
+                        <span class="ion-ios-list-outline"></span> Features & Details
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-features-rrr" role="tabpanel" aria-labelledby="heading-features-rrr" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    <h5>Core Issue Addressed:</h5>
+                    <p style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">In vanilla The Sims 1, every day at 4:00 PM all non-household relationships lose 2 Short Term Relationship (STR) points. This high decay rate creates tedious maintenance for Sims with many friends, often forcing them into a routine of social upkeep instead of pursuing personal goals. Additionally, STR decays even when Sims are sharing a lot, being converted to LTR at an unfavorable rate, effectively punishing your Sim for socializing in public spaces. Long Term Relationship (LTR) points rarely mitigated this, making friendships feel unrealistic.</p>
+                    
+                    <h5>Understanding the Systems:</h5>
+                    <p style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">The Sims 1 has two relationship adjustment systems:</p>
+                    <ol style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;"><strong>Daily Global Decay:</strong> In vanilla, a daily -2 STR applies to ALL non-household relationships daily at 4PM</li>
+                        <li style="margin-bottom: 8px;"><strong>On-Lot Passive System:</strong> In vanilla, relationships between your Sims and the non-household Sims sharing your lot get adjusted every 2 hours, via 2 paths, A or B, depending on whether your STR or LTR is higher</li>
+                    </ol>
+
+                    <h5>Core Changes:</h5>
+                    <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;"><strong>Global Relationship Decay Reduction:</strong> Daily decay halved from -2 to -1 STR for non-household Sims, making friendship maintenance more natural and manageable.</li>
+                        <li style="margin-bottom: 8px;"><strong>Passive Relationship Gain/Loss Rework:</strong> The mod reworks how Short Term (STR) and Long Term (LTR) relationships interact on shared lots, balancing STR→LTR and LTR→STR conversion and checking every 4 hours, so socializing is less punishing and long-term friendships are more rewarding.</li>
+                        <li style="margin-bottom: 8px;"><strong>Version A: Balanced Model:</strong> Vanilla flavored version, it keeps STR/LTR exchanges fair, rewarding meaningful relationships over time with a bias, while still requiring occasional maintenance at a relaxed pace.</li>
+                        <li style="margin-bottom: 8px;"><strong>Version B: Relaxed Model:</strong> Hands-off version with NO on-lot penalties, allowing gradual LTR growth; STR gain on Path-B is reduced to prevent inflation, but occasional maintenance is still needed.</li>
+                    </ul>
+                
+
+                    <h5>Technical Implementation:</h5>
+                    <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;"><strong>Modified VisitGenerator.iff:</strong> 2 → 1 (global decay amount)</li>
+                        <li style="margin-bottom: 8px;"><strong>Modified HDLTR.iff:</strong> Path A/B multiple reassignments</li>
+                        <li style="margin-bottom: 8px;"><strong>Check Interval:</strong> Timer adjustment from 2 → 4 Sim hours</li>
+                    </ul>
+                    
+                    <h5>Mathematical Comparison vs Vanilla:</h5>
+                    <table class="table table-bordered table-sm" style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 8px;">Metric</th>
+                                <th style="padding: 8px;">Vanilla</th>
+                                <th style="padding: 8px;">Version A (Balanced)</th>
+                                <th style="padding: 8px;">Version B (Relaxed)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px;">4PM Daily decay (all non-household)</td>
+                                <td style="padding: 8px;">-2</td>
+                                <td style="padding: 8px;">-1</td>
+                                <td style="padding: 8px;">-1</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">On-Lot STR/LTR Conversion Timer</td>
+                                <td style="padding: 8px;">Every 2 hours</td>
+                                <td style="padding: 8px;">Every 4 hours</td>
+                                <td style="padding: 8px;">Every 4 hours</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">PATH-A: On-Lot STR > LTR Conversion</td>
+                                <td style="padding: 8px;">-2 STR/+1 LTR</td>
+                                <td style="padding: 8px;">-1 STR/+1 LTR</td>
+                                <td style="padding: 8px;">0 STR/+1 LTR</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">PATH-B: On-Lot LTR > STR Conversion</td>
+                                <td style="padding: 8px;">+1 STR/-2 LTR</td>
+                                <td style="padding: 8px;">+2 STR/-1 STR</td>
+                                <td style="padding: 8px;">+1 STR/0 STR</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">PATH-A:On-lot passive Potential MAX. Conversion/day</td>
+                                <td style="padding: 8px;">-24 STR/+12 LTR</td>
+                                <td style="padding: 8px;">-6 STR/+6 LTR/td>
+                                <td style="padding: 8px;">0 STR/+6 LTR</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">PATH-B:On-lot passive Potential MAX. Conversion/day</td>
+                                <td style="padding: 8px;">+24 STR/-12 LTR</td>
+                                <td style="padding: 8px;">+12 STR/-6 LTR</td>
+                                <td style="padding: 8px;">+6 STR/0 LTR</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Requirements Section -->
+        <div class="panel panel-default">
+            <div id="heading-req-rrr" role="tab" class="panel-heading">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-mod-rrr" href="#collapse-req-rrr" aria-expanded="false" aria-controls="collapse-req-rrr" class="collapsed">
+                        <span class="ion-ios-checkmark-outline"></span> Version Selection Guide
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-req-rrr" role="tabpanel" aria-labelledby="heading-req-rrr" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+
+                    <h5>Choose Version A (Balanced) if:</h5>
+                    <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;">You want dynamic relationship mechanics with trade-offs that build gains on the long run</li>
+                        <li style="margin-bottom: 8px;">You want a more dynamic point system. (Little benefits at start/Large benefits later)</li>
+                        <li style="margin-bottom: 8px;">You prefer a relaxed relationship system that slowly gets easier over time</li>
+                        <li style="margin-bottom: 8px;">You want a more flexible relationship maintenance</li>
+                    </ul>
+                    
+                    <h5>Choose Version B (Relaxed) if:</h5>
+                    <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;">You want consistent relationship mechanics that build up gains over time</li>
+                        <li style="margin-bottom: 8px;">You want a more linear point system. (Regular benefits all the time)</li>
+                        <li style="margin-bottom: 8px;">You prefer a more relaxed relationship system that builds gradually</li>
+                        <li style="margin-bottom: 8px;">You want a more hands-off approach to relationship maintenance</li>
+                    </ul>
+                    
+                    <h5>Gameplay Implications that affect BOTH versions:</h5>
+                    <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;"><strong>Career Advancement:</strong> Much more manageable (friend decay reduced 50+%)</li>
+                        <li style="margin-bottom: 8px;"><strong>Long-Term Play:</strong> Relationships evolve more naturally over time</li>
+                        <li style="margin-bottom: 8px;"><strong>Community Lots:</strong> No longer penalized for shared occupancy, every lost point gets exchanged</li>
+                        <li style="margin-bottom: 8px;"><strong>Social Requirements:</strong> Meeting large job friend requirements becomes realistically achievable without abandoning the system</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Installation Section -->
+        <div class="panel panel-default">
+            <div id="heading-install-rrr" role="tab" class="panel-heading">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-mod-rrr" href="#collapse-install-rrr" aria-expanded="false" aria-controls="collapse-install-rrr" class="collapsed">
+                        <span class="ion-ios-gear-outline"></span> Installation Guide
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-install-rrr" role="tabpanel" aria-labelledby="heading-install-rrr" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    <h5>Step-by-Step Installation:</h5>
+                    <ol style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;">Choose either <strong>Version A (Balanced)</strong> or <strong>Version B (Relaxed)</strong> based on your preferred playstyle</li>
+                        <li style="margin-bottom: 8px;">Download the zipped mod file by clicking on the picture of this mod, it includes both versions</li>
+                        <li style="margin-bottom: 8px;">Extract the mod files of your chosen version to your The Sims 1 installation folder, location may differ based on your game version (Complete Collection/Legacy Collection):
+                            <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                                <li style="margin-bottom: 6px;"><code>The Sims/Gamedata/Objects/VisitGenerator.iff</code></li>
+                                <li style="margin-bottom: 6px;"><code>The Sims/ExpansionShared/HDLTR.iff</code></li>
+                            </ul>
+                        </li>
+                        <li style="margin-bottom: 8px;">Launch The Sims 1 - changes are immediate, no configuration needed</li>
+                    </ol>
+                    
+                    <div class="alert alert-info" style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <strong>Note:</strong> Version A and Version B are mutually exclusive. Install only one version at a time. Each contains complete modified IFF files.
+                    </div>
+                    
+                    <h5>Compatibility:</h5>
+                    <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;">Developed and tested on The Sims 1 Complete Collection</li>
+                        <li style="margin-bottom: 8px;">Should work without issues on Legacy Collection (Let me know) </li>
+                        <li style="margin-bottom: 8px;">To uninstall, simply delete the modified IFF files from your installation folder</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Changelog Section -->
+        <div class="panel panel-default">
+            <div id="heading-changelog-rrr" role="tab" class="panel-heading">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-mod-rrr" href="#collapse-changelog-rrr" aria-expanded="false" aria-controls="collapse-changelog-rrr" class="collapsed">
+                        <span class="ion-ios-paper-outline"></span> Design Notes
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-changelog-rrr" role="tabpanel" aria-labelledby="heading-changelog-rrr" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    <h5>Version 1.0 (2026):</h5>
+                    <ul style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        <li style="margin-bottom: 8px;">Reduced 4PM global relationship decay from -2 to -1 Daily points</li>
+                        <li style="margin-bottom: 8px;">Reworked on-lot passive adjustment system with two distinct versions</li>
+                        <li style="margin-bottom: 8px;"><strong>Version A (Balanced):</strong> Daily -1, Lifetime +1 when Daily > Lifetime; Daily +2, Lifetime -1 when Lifetime > Daily</li>
+                        <li style="margin-bottom: 8px;"><strong>Version B (Relaxed):</strong> Daily 0, Lifetime +1 when Daily > Lifetime; Daily +1, Lifetime 0 when Lifetime > Daily</li>
+                        <li style="margin-bottom: 8px;">Changed check interval from 2-hour to 4-hour frequency</li>
+                    </ul>
+                    
+                    <h5>Design Philosophy and Closing Notes:</h5>
+                    <p style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        This mod addresses The Sims 1's most punishing relationship systems while offering players meaningful choices. The original game's relationship decay was disproportionately severe, making career advancement through friendships excessively tedious. Version A maintains the strategic conversion between Daily and Lifetime relationships but with greatly reduced penalties. Version B eliminates on-lot penalties entirely for players who prefer minimal relationship maintenance.
+                    </p>
+                    <p style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300; margin-top: 12px;">
+                        As Will Wright stated about the design of The Sims:
+                    </p>
+                    <blockquote style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300; margin-left: 20px; margin-top: 8px; margin-bottom: 12px; border-left: 3px solid #fabe12; padding-left: 12px; color: #cccccc;">
+                        “We wanted players to feel the consequences of social choices. Relationships weren’t just numbers—they reflected how Sims lived their lives and interacted with others, giving players a sense of connection and responsibility.” – Will Wright, The Sims Developer Interview, 2000
+                    </blockquote>
+                    <p style="font-family: 'Roboto'; line-height: 1.5; font-weight: 300;">
+                        I believe both versions make the game's social requirements realistically achievable while preserving the core relationship mechanics that define The Sims experience. <br>Versions might be tweaked or added in the future; feel free to contact me through the Contact Form on this website if you’d like to see a different version of this mod, or if you have any feedback about it.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+
+    <!-- Footer -->
+        <section id="footer-widget" class="footer-widget">
+            <div class="container header-bg">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h3>Featured Kits</h3>
+                        <ul>
+                            <li><a href="#">Platinum Plumbob Polish Wax</a></li>
+                            <li><a href="#">The "Set It & Forget It" Cauldron Lid</a></li>
+                            <li><a href="#">Pre-charged Mana Crystals</a></li>
+                            <li><a href="#">"Chore-omancy" Broomstick Module</a></li>
+                            <li><a href="#">My First Familiar! Starter Kit</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>Dept. of Arcane Support</h3>
+                        <ul>
+                            <li><a href="#">Broomstick Maintenance</a></li>
+                            <li><a href="#">Familiar Refamiliarization</a></li>
+                            <li><a href="#">Scrying Services</a></li>
+                            <li><a href="#">Wand Calibration</a></li>
+                            <li><a href="#">Teleportation Troubleshooting</a></li>
+                        </ul>
+                    </div>
+                                        <div class="col-sm-3">
+                        <h3>Magic Town Gazzette</h3>
+                        <ul>
+                            <li><a href="#">Polished Prophecies: <br>Can a grimy globe cause grim predictions?</a></li>
+                            <li><a href="#">Simverus Snapshot's <br>Potion of the Month</a></li>
+                            <li><a href="#">Posture and Portals <br>Ergonomics for Dimensional Travel</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>Veritable Visions</h3>
+                        <div class="widget-img-box">
+                            <a class="test-popup-link" href="assets/images/widget-big-1.png">
+                                <img class="widget-img" src="assets/images/widget-1.png" alt="widget">
+                            </a>
+                            <a class="test-popup-link" href="assets/images/widget-big-2.png">
+                                <img class="widget-img" src="assets/images/widget-2.png" alt="widget">
+                            </a>
+                            <a class="test-popup-link" href="assets/images/widget-big-3.png">
+                                <img class="widget-img" src="assets/images/widget-3.png" alt="widget">
+                            </a>
+                            <a class="test-popup-link" href="assets/images/widget-big-4.png">
+                                <img class="widget-img" src="assets/images/widget-4.png" alt="widget">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+</section>
+
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery-1.12.3.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/script.js"></script>
+        
+        <!-- Tab Switching JavaScript - UPDATED FOR BANNER SWITCHING -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const gameBanner = document.getElementById('game-banner');
+            const bannerTitle = document.querySelector('.dynamic-game-banner .title');
+            const bannerSubtitle = document.querySelector('.dynamic-game-banner p:last-child');
+            
+            // Function to switch tabs
+            function switchTab(tabId, title, bannerClass, subtitle) {
+                // Remove active class from all buttons
+                tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                
+                // Hide all mod sections
+                document.querySelectorAll('.mod-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                const activeButton = document.querySelector(`[data-tab="${tabId}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+                
+                // Show the corresponding mod section
+                const activeSection = document.getElementById(`mods-${tabId}`);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                }
+                
+                // Update banner
+                if (gameBanner && bannerClass) {
+                    // Remove all banner classes except the base ones
+                    gameBanner.className = 'intro row dynamic-game-banner';
+                    // Add the new banner class
+                    gameBanner.classList.add(bannerClass);
+                }
+                
+                // Update title
+                if (bannerTitle && title) {
+                    bannerTitle.textContent = title;
+                }
+                
+                // Update subtitle
+                if (bannerSubtitle && subtitle) {
+                    bannerSubtitle.textContent = subtitle;
+                }
+            }
+            
+            // Add click event to each tab button
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    const title = this.getAttribute('data-title');
+                    const bannerClass = this.getAttribute('data-banner');
+                    const subtitle = this.getAttribute('data-subtitle');
+                    
+                    switchTab(tabId, title, bannerClass, subtitle);
+                    
+                    // Update URL hash
+                    window.location.hash = tabId;
+                });
+            });
+            
+            // Check URL hash on page load
+            if (window.location.hash) {
+                const tabId = window.location.hash.replace('#', '');
+                const button = document.querySelector(`[data-tab="${tabId}"]`);
+                if (button) {
+                    const title = button.getAttribute('data-title');
+                    const bannerClass = button.getAttribute('data-banner');
+                    const subtitle = button.getAttribute('data-subtitle');
+                    switchTab(tabId, title, bannerClass, subtitle);
+                }
+            }
+        });
+        </script>
+
+    </body>
+</html>

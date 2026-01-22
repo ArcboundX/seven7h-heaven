@@ -1,0 +1,2705 @@
+body{
+	background-color: #3A6EA5;
+	font-family: 'Oswald';
+	position: relative;
+	margin-top: 0;
+}
+
+/*======================================================================
+##		Global Settings
+=======================================================================*/
+.btn-robot, p{
+	font-family: 'Roboto';
+	line-height: 1.5;
+	letter-spacing: 1px;
+	font-weight: 300;
+}
+.mt0{
+	margin-top: 0;
+}
+.thin{
+	font-weight: 300;
+}
+.c-table{
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+.c-cell{
+	display: table-cell;
+	vertical-align: middle;
+}
+.title-box{
+	text-align: center;
+	padding: 100px 0 50px;
+	text-transform: uppercase;
+}
+.title-box p{
+	margin-bottom: 0;
+}
+.title{
+	font-weight: 300;
+	color: #999;
+	font-size: 36px;
+	letter-spacing: 2px;
+}
+/*======================================================================
+##		COLOR FOR TITLES OF PAGES
+=======================================================================*/
+.title.mt0{
+	text-transform: capitalize;
+	font-weight: 400;
+	color: #fff;
+}
+.title span{
+	color: #444;
+}
+
+
+/*======================================================================
+##		Original Robot Button (Roboto Font)
+=======================================================================*/
+.btn-robot{
+    font-family: 'Roboto', sans-serif; /* Explicitly set */
+    border-radius: 0;
+    background-color: #fabe12;
+    color: #fff;
+    text-transform: uppercase;
+    border-color: transparent;
+    padding: 5px 15px;
+    transition: all 0.4s ease-in-out;
+    letter-spacing: 1px;
+    font-weight: 300;
+    display: inline-block; /* Added for proper button behavior */
+    text-decoration: none; /* Added for links */
+    border: 1px solid transparent; /* Added for consistent border */
+    cursor: pointer; /* Added for better UX */
+}
+.btn-robot:hover{
+    background-color: transparent;
+    color: #fabe12;
+    border-color: #fabe12;
+    text-decoration: none; /* Added for links */
+}
+
+
+/*======================================================================
+##		Original Robot Button but Blue (Roboto Font)
+=======================================================================*/
+.btn-robot-blue{
+    font-family: 'Roboto', sans-serif; /* Explicitly set */
+    border-radius: 0;
+    background-color: #3A6EA5;
+    color: #fff;
+    text-transform: uppercase;
+    border-color: transparent;
+    padding: 5px 15px;
+    transition: all 0.4s ease-in-out;
+    letter-spacing: 1px;
+    font-weight: 300;
+    display: inline-block; /* Added for proper button behavior */
+    text-decoration: none; /* Added for links */
+    border: 1px solid transparent; /* Added for consistent border */
+    cursor: pointer; /* Added for better UX */
+}
+.btn-robot-blue:hover{
+    background-color: transparent !important;
+    color: #3A6EA5 !important;
+    border-color: #3A6EA5 !important;
+    text-decoration: none;
+}
+
+
+
+
+/*======================================================================
+##		NEW Oswald Button BLUE (Same Style, Different Font)
+=======================================================================*/
+.btn-oswald-blue {
+    font-family: 'Oswald', sans-serif;
+	font-size: 28px;
+    font-weight: 400; /* Oswald typically uses 400-500 weight */
+    border-radius: 0;
+    background-color: #3A6EA5;
+    color: #fff;
+    text-transform: uppercase;
+    border-color: transparent;
+    padding: 5px 15px;
+    transition: all 0.4s ease-in-out;
+    letter-spacing: 0.5px; /* Slightly less spacing for Oswald */
+    margin-top: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.btn-oswald-blue:hover {
+    background-color: transparent;
+    color: #3A6EA5;
+    border-color: #3A6EA5;
+    text-decoration: none;
+}
+
+/*======================================================================
+##		NEW Oswald Button (Yellow)
+=======================================================================*/
+.btn-oswald-yellow {
+    font-family: 'Oswald', sans-serif;
+	font-size: 28px;
+    font-weight: 400; /* Oswald typically uses 400-500 weight */
+    border-radius: 0;
+    background-color: #fabe12;
+    color: #fff;
+    text-transform: uppercase;
+    border-color: transparent;
+    padding: 5px 15px;
+    transition: all 0.4s ease-in-out;
+    letter-spacing: 0.5px; /* Slightly less spacing for Oswald */
+    margin-top: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.btn-oswald-yellow:hover {
+    background-color: transparent;
+    color: #fabe12;
+    border-color: #fabe12;
+    text-decoration: none;
+}
+
+/*======================================================================
+##		Message Popup Logic
+=======================================================================*/
+
+.sim-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.sim-popup.hidden {
+  display: none;
+}
+
+.sim-popup-content {
+  background: #fff;
+  padding: 20px 25px;
+  max-width: 320px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border: 2px solid #fabe12; /* Added: matches your button color */
+  font-family: 'Oswald', sans-serif; /* Added: matches your buttons */
+}
+
+.sim-popup-content p {
+  margin-bottom: 15px;
+  font-size: 1.1em; /* Added: better readability */
+  line-height: 1.4; /* Added: better spacing */
+  color: #333; /* Added: better contrast */
+}
+
+
+/*======================================================================
+##		Prevent Button Drifting
+=======================================================================*/
+
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: auto auto; /* Key change: auto instead of 1fr */
+    gap: 0;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: start; /* Aligns to the left, or use 'end' for right */
+}
+.btn-grid button {
+    box-sizing: border-box;
+    white-space: nowrap; /* Prevents text wrapping */
+    min-width: min-content; /* Ensures button can shrink to fit content */
+}
+
+
+
+/*======================================================================
+##		Header Section
+=======================================================================*/
+.site-header-bg{
+	width: 100%;
+	background-color: #111;
+	z-index: 1;
+	padding: 30px 0;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'Roboto';
+}
+.site-header-bg .input-group{
+	padding-top: 10px;
+}
+.site-header-bg .form-control{
+	border-radius: 0;
+	background-color: transparent;
+}
+.site-header-bg .input-group .btn{
+	text-transform: uppercase;
+	border-radius: 0;
+}
+.site-header-bg .btn-robot{
+	margin-top: 0;
+	padding-bottom: 6px;
+}
+
+
+
+
+/*======================================================================
+##		Header Section
+=======================================================================*/
+.main-header{
+	text-transform: uppercase;
+	text-align: center;
+	color: #fff;
+	letter-spacing: 3px;
+	background: #fabe12;
+	position: relative;
+}
+.header-quote{
+	color: #fabe12;
+	font-weight: 700;
+	margin-bottom: 0;
+}
+.main-header p{
+	font-weight: 300;
+	font-size: 18px;
+	letter-spacing: 6px;
+}
+.header-title{
+	font-weight: 900;
+}
+.header-title .thin{
+	letter-spacing: 6px;
+}
+.intro{
+	padding: 200px 0;
+    background-image: url(../images/header.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: -90px;
+    z-index: 11;
+    position: relative;
+}
+.nutral{
+	background-color: #111;
+	height: 90px;
+	z-index: 10;
+	position: relative;
+}
+.navbar{
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.navbar-default{
+	border-color: #262626;
+    background-color: #111;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+	color: #fabe12;
+	background-color: transparent;
+}
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+.navbar .navbar-collapse {
+    text-align: center;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	color: #fff;
+}
+
+
+
+
+/*======================================================================
+##		Footer widget Section
+=======================================================================*/
+.footer-widget{
+	padding: 80px 0;
+	border-bottom: 1px solid rgba(153, 153, 153, 0.3);
+}
+.footer-widget .section-bg{
+	background-color: #ebebeb;
+	text-align: center;
+	text-transform: capitalize;
+}
+.footer-widget h3{
+	border-bottom: 1px solid rgba(153, 153, 153, 0.3);
+	color: #fabe12;
+	padding-bottom: 25px;
+	margin-bottom: 15px;
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+.footer-widget ul{
+	padding-left: 0;
+}
+.footer-widget ul li{
+	list-style-type: none;
+	padding: 7px 0;
+}
+.footer-widget ul li:before{
+	content: "\f363";
+	font-family: 'ionicons';
+	padding-right: 5px;
+	font-size: 14px;
+	color: #fabe12;
+}
+.footer-widget ul li a{
+	color: #999;
+	font-family: 'Roboto';
+	font-size: 14px;
+	font-weight: 500;
+}
+.widget-img-box{
+	margin-top: 30px;
+}
+.widget-img{
+	width: 49%;
+	display: inline-block;
+}
+.footer{
+	padding: 10px 0 20px;
+}
+.footer h3, .footer a{
+	color: #999;
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+
+
+
+
+/*======================================================================
+##		Product Section
+=======================================================================*/
+.product .section-bg{
+	background-color: #06104c;
+}
+.porduct-box{
+	margin-bottom: 30px;
+	position: relative;
+}
+.porduct-box img{
+	width: 100% !important;
+}
+
+/*======================================================================
+Button for the 3 boxes
+=======================================================================*/
+.product-title{
+	position: absolute;
+    top: 5px;
+    left: 25px;
+    right: 25px;
+    padding: 15px;
+    background-color: #3A6EA5;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    font-weight: 300;
+}
+
+/*======================================================================
+=======================================================================*/
+
+.classic-title{
+	margin-top: 100px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 30px;
+	position: relative;
+}
+.incline-div{
+	position: absolute;
+	top: 3px;
+	left: 0;
+	border-top: 60px solid #fabe12;
+	border-right: 60px solid transparent;
+	margin-left: -15px;
+	width: 200px;
+	z-index: 1;
+}
+.outer-stiker{
+	display: inline-block;
+	color: #d0d0d0;
+}
+.stiker{
+	display: inline-block;
+}
+.inner-stiker{
+	color: #fff;
+	padding-right: 50px;
+}
+.outer-stiker, .inner-stiker{
+	font-weight: 300;
+	z-index: 2;
+	position: relative;
+}
+.product p{
+	color: #999;
+	font-size: 14px;
+	text-align: justify;
+	margin-bottom: 30px;
+}
+.product p.p-large{
+	font-size: 16px;
+	font-weight: 400;
+}
+@media (min-width: 768px){
+	.boxed{
+		padding: 0 80px;
+	}
+}
+
+
+
+
+/*======================================================================
+##		History Section
+=======================================================================*/
+.history .section-bg{
+	background-color: #111;
+	text-align: center;
+}
+.history p{
+	color: #fff;
+}
+.history .title{
+	color: #fabe12;
+}
+/* Keep existing rule */
+.history img {
+    padding: 60px 0 0;
+}
+
+/* Add this AFTER the above rule to override it for banners */
+.history .banner-image-box img,
+.history .angled-image img,
+.history .split-image-box img {
+    padding: 0 !important;
+}
+
+
+
+
+/*======================================================================
+##		PARTNER SECTION - FIXED CONTAINER
+=======================================================================*/
+
+/* The container - now using the original .section-bg class properly */
+.partner .section-bg {
+    background-color: #fabe12; /* YELLOW BACKGROUND */
+    text-align: center;
+    padding: 80px 0; /* Added top padding */
+}
+
+/* Adjust title colors for yellow background */
+.partner .title {
+    color: #111; /* Dark text on yellow */
+}
+
+.partner .subtitle {
+    color: #333; /* Darker gray on yellow */
+    font-style: italic;
+    margin-top: -10px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.partner .title-box p {
+    color: #3A6EA5; /* Blue text on yellow */
+    font-weight: 500;
+}
+
+/* The .boxed container from your original CSS */
+.boxed {
+    width: 100%;
+    max-width: 1170px; /* Match your original container width */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Partner card */
+.partner-card {
+    position: relative;
+    height: 350px; /* Adjusted height */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid #3A6EA5;
+    background: linear-gradient(135deg, #111 0%, #222 100%);
+    margin: 0 10px;
+}
+
+.partner-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.partner-giant {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* Overlay */
+.partner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, 
+        rgba(17, 17, 17, 0.95) 0%,
+        rgba(17, 17, 17, 0.8) 30%,
+        rgba(17, 17, 17, 0.5) 70%,
+        transparent 100%);
+    padding: 20px 15px 10px;
+}
+
+.partner-overlay h3 {
+    color: #fabe12;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    letter-spacing: 0.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.partner-overlay p {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin: 0 0 6px 0;
+    opacity: 0.9;
+}
+
+.partner-tag {
+    display: inline-block;
+    color: #fabe12;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-style: italic;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.7);
+    border-left: 2px solid #3A6EA5;
+}
+
+/* Owl Carousel */
+#partner-slider.owl-carousel .owl-stage-outer {
+    padding: 10px 0 30px;
+}
+
+#partner-slider.owl-carousel .owl-stage {
+    display: flex;
+    align-items: center;
+}
+
+/* Navigation - optional, keep if you want */
+#partner-slider .owl-nav {
+    display: none; /* Hide by default */
+}
+
+#partner-slider .owl-dots {
+    margin-top: 15px;
+}
+
+#partner-slider .owl-dot span {
+    width: 10px !important;
+    height: 10px !important;
+    background: rgba(58, 110, 165, 0.7) !important;
+    margin: 0 5px !important;
+    border: 1px solid #111;
+}
+
+#partner-slider .owl-dot.active span {
+    background: #111 !important;
+    border-color: #3A6EA5;
+}
+
+
+/* Employee of the Month Section */
+.employee {
+    background-color: #2d2b2a;
+    color: #fff;
+    padding: 80px 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.employee .title-box p {
+    color: #fabe12;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.employee .title-box h2 {
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+#employee-slider .item {
+    text-align: center;
+    margin: 20px;
+    position: relative;
+}
+
+#employee-slider .item img {
+    width: 200px;       /* larger images */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fabe12; /* highlight border */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin: 0 auto 15px auto;
+}
+
+#employee-slider .item h4 {
+    font-weight: 500;
+    margin: 5px 0 3px 0;
+    color: #ffd966;
+}
+
+#employee-slider .item p {
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Carousel spacing */
+.owl-carousel .owl-item {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .partner-card {
+        height: 320px;
+    }
+}
+
+@media (max-width: 992px) {
+    .partner-card {
+        height: 280px;
+    }
+    
+    .partner-overlay {
+        padding: 15px 10px 8px;
+    }
+    
+    .partner-overlay h3 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .partner-card {
+        height: 240px;
+    }
+    
+    .partner-overlay h3 {
+        font-size: 14px;
+    }
+    
+    .partner-overlay p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 576px) {
+    .partner-card {
+        height: 200px;
+    }
+    
+    .partner-overlay h3 {
+        font-size: 12px;
+    }
+    
+    .partner-overlay p {
+        font-size: 10px;
+    }
+    
+    .partner-tag {
+        font-size: 9px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/*======================================================================
+##		ODDS 'N' THINGAMAJIGS SECTION
+=======================================================================*/
+
+/* Main container with background image */
+.odds-container {
+    background: rgba(17, 17, 17, 0.8);
+    padding: 40px;
+    border: 2px solid rgba(250, 190, 18, 0.3);
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background-image: url('../images/odds-bg.png'); /* Add your background image here */
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+/* Color bar at top */
+.odds-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #fabe12;
+    z-index: 1;
+}
+
+/* Titles */
+.odds-title {
+    color: #fff;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.odds-title span {
+    color: #fabe12;
+}
+
+.odds-subtitle {
+    color: #999;
+    margin-bottom: 30px;
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+}
+
+/* Mod banners grid */
+.mods-banner-grid {
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Individual mod banner */
+.mod-banner {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    background: rgba(30, 30, 30, 0.4); /* Reduced opacity */
+}
+
+.mod-banner:hover {
+    transform: translateY(-5px);
+    border-color: rgba(250, 190, 18, 0.5);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Color tags for each mod */
+.mod-color-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    z-index: 3;
+}
+
+.mod-banner-1 .mod-color-tag { background: #3A6EA5; }
+.mod-banner-2 .mod-color-tag { background: #17a2b8; }
+.mod-banner-3 .mod-color-tag { background: #6f42c1; }
+
+/* Mod images - NO padding from .history img rule */
+.mod-banner .mod-image,
+.mod-banner .mod-image img {
+    padding-top: 0 !important;
+}
+
+.mod-image {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Full height */
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Subtle overlay on all images */
+.mod-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.2) 0%,
+        rgba(0,0,0,0.1) 30%,
+        rgba(0,0,0,0.3) 70%,
+        rgba(0,0,0,0.5) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.mod-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.mod-banner:hover .mod-image img {
+    transform: scale(1.05);
+}
+
+/* Mod content - NO black background, transparent with text shadow */
+.mod-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    z-index: 3;
+    background: transparent; /* Removed black background */
+}
+
+.mod-content h3 {
+    color: #fabe12;
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.mod-content p {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin: 0 0 15px 0;
+    opacity: 0.95;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Mod buttons */
+.mod-btn {
+    margin-top: 10px;
+    padding: 8px 20px;
+}
+
+.mod-banner-2 .mod-btn,
+.mod-banner-3 .mod-btn {
+    opacity: 0.7;
+}
+
+/* View all section */
+.odds-view-all {
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.odds-view-all .btn {
+    font-size: 20px;
+    padding: 10px 30px;
+}
+
+.odds-view-all .ion-ios-arrow-forward {
+    margin-right: 8px;
+}
+
+/*======================================================================
+##		EXPECTATION BANNERS - Updated with subtle overlays
+=======================================================================*/
+
+/* Subtle overlay on all expectation banner images */
+.banner-image-box::after,
+.angled-image::after,
+.split-image-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0.05) 30%,
+        rgba(0,0,0,0.2) 70%,
+        rgba(0,0,0,0.4) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Remove black backgrounds from content boxes */
+.banner-content,
+.angled-content,
+.split-content {
+    background: transparent; /* Removed black background */
+}
+
+/* Add text shadows for readability */
+.banner-content h2,
+.banner-content p,
+.angled-content h3,
+.angled-content p,
+.split-content h2,
+.split-content p {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+/* Color tags for expectation banners */
+.banner-color-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    z-index: 4; /* Above image overlay */
+}
+
+.adventure-banner .banner-color-tag { background: #3A6EA5; }
+.romance-banner .banner-color-tag { background: #6A0DAD; }
+.action-banner .banner-color-tag { background: #DC3545; }
+
+.split-color-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #fabe12;
+    z-index: 4;
+}
+.angled-color-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    z-index: 4;
+}
+
+.chaos-banner .angled-color-tag { background: #28a745; }
+.whimsy-banner .angled-color-tag { background: #17a2b8; }
+.mystery-banner .angled-color-tag { background: #6f42c1; }
+
+/* Ensure expectation banner images have no padding */
+.banner-image-box,
+.angled-image,
+.split-image-box,
+.banner-image-box img,
+.angled-image img,
+.split-image-box img {
+    padding-top: 0 !important;
+}
+
+/*======================================================================
+##		EXPECTATION BANNERS (Fixed - No Black Bars)
+=======================================================================*/
+
+/* Expectations Section Styles */
+.banner-cascade {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.cascade-banner {
+    flex: 1;
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border: 2px solid rgba(250, 190, 18, 0.3);
+    transition: all 0.3s ease;
+}
+
+
+
+/* BLACK BANNER OF THE TEXT OF 3 BOXES */
+.cascade-banner:hover {
+    transform: translateY(-5px);
+    border-color: #fabe12;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* SOLID background - NO gradient overlay */
+.banner-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: rgba(17, 17, 17, 0.3);
+    z-index: 2;
+}
+
+.banner-content h2 {
+    color: #fabe12;
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.);
+}
+
+.banner-content p {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Images show FULL height */
+.banner-image-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.banner-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.cascade-banner:hover .banner-image-box img {
+    transform: scale(1.05);
+}
+
+/* Split Banner */
+.split-banner {
+    display: flex;
+    height: 250px;
+    position: relative;
+    border: 2px solid rgba(250, 190, 18, 0.3);
+    overflow: hidden;
+}
+
+.split-content {
+    flex: 1;
+    padding: 40px;
+    background: rgba(17, 17, 17, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.split-content h2 {
+    color: #fabe12;
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.split-content p {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.split-image-box {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Remove any yellow bar covering the image */
+.split-image-box::before {
+    display: none;
+}
+
+.split-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Angled Banners */
+.angled-banner {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(250, 190, 18, 0.2);
+    position: relative;
+    margin-bottom: 30px;
+    height: 200px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.angled-banner:hover {
+    border-color: #fabe12;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* SOLID background - NO gradient overlay */
+/* BLACK BOXES FOR THE OTHER 3 BOXES*/
+.angled-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: rgba(17, 17, 17, 0.3);
+    z-index: 2;
+}
+
+.angled-content h3 {
+    color: #fabe12;
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+}
+
+.angled-content p {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Images show FULL height */
+.angled-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.angled-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .banner-cascade {
+        flex-direction: column;
+    }
+    
+    .cascade-banner {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+    
+    .split-banner {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .split-content, .split-image-box {
+        height: 200px;
+    }
+    
+    .angled-banner {
+        height: 180px;
+    }
+    
+    /* Mod banners responsive */
+    .mod-banner {
+        height: 280px;
+        margin-bottom: 20px;
+    }
+    
+    .mod-content h3 {
+        font-size: 20px;
+    }
+    
+    .odds-container {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-content h2 {
+        font-size: 28px;
+    }
+    
+    .split-content h2 {
+        font-size: 30px;
+    }
+    
+    .angled-content h3 {
+        font-size: 20px;
+    }
+    
+    .banner-content, .angled-content {
+        padding: 15px;
+    }
+    
+    /* Mod banners mobile */
+    .mod-banner {
+        height: 250px;
+    }
+    
+    .mod-content h3 {
+        font-size: 18px;
+    }
+    
+    .mod-content p {
+        font-size: 13px;
+    }
+    
+    .odds-container {
+        padding: 20px;
+    }
+    
+    .odds-view-all .btn {
+        font-size: 18px;
+        padding: 8px 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*======================================================================
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##		Pages
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=======================================================================*/
+
+/*======================================================================
+##		Inner Header Sections
+=======================================================================*/
+.inner-header .intro{
+	padding: 100px 0;
+}
+.overlay{
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.inner-header .breadcrumb{
+	margin-bottom: 0;
+	background-color: transparent;
+	font-size: 26px;
+	font-weight: 300;
+}
+.inner-header .breadcrumb>.active{
+	color: #fabe12;
+}
+.inner-header .breadcrumb a{
+	color: #fff;
+}
+.inner-p{
+	text-align: center;
+	margin-bottom: 80px;
+	font-size: 16px;
+}
+.page-bgc{
+	background-color: #06104c;
+	padding-bottom: 100px;
+}
+
+.intro{
+	background-color: #313131;
+}
+.faq-header .intro{
+	background-image: url(../images/faq-header.png);
+}
+.shop-header .intro{
+	background-image: url(../images/shop-header.png);
+}
+.contact-header .intro{
+	background-image: url(../images/contact-header.png);
+}
+.about-header .intro{
+	background-image: url(../images/about-header.png);
+}
+.about .page-bgc{
+	padding-bottom: 0;
+}
+
+/*======================================================================
+##		About COLORS
+=======================================================================*/
+/* About page header */
+.about .title-box p {
+    color: #fabe12;
+}
+
+.about .title.mt0 {
+    color: #fff;
+}
+
+.about .inner-p {
+    color: #999;
+}
+
+/* Services section */
+.about .service-box .service-title .mt-10 {
+    color: #fff;
+}
+
+.about .service-box p {
+    color: #999;
+}
+
+/* Machine Man section */
+.about .m-s-title {
+    color: #fff;
+}
+
+.about .m-p-title {
+    color: #fff;
+}
+
+.about .machine-man p {
+    color: #999;
+}
+
+/* Team section */
+.about .team-box .member-name {
+    color: #fff;
+}
+
+.about .team-box .member-id {
+    color: #fabe12;
+}
+
+.about .team-box p {
+    color: #999;
+}
+
+/* CTA section */
+.about .cta p {
+    color: #999;
+}
+
+
+
+/*======================================================================
+##		FAQ
+=======================================================================*/
+.panel-heading {
+  padding: 0;
+  border-radius: 0;
+}
+
+.panel-heading h4.panel-title {
+  position: relative;
+  text-transform: capitalize;
+}
+
+/* Default panel link (inactive) */
+.panel-heading a {
+  display: block;
+  padding: 15px 0 15px 40px;
+  line-height: 1;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  background-color: #3A6EA5; /* default blue bg */
+  color: #fabe12; /* yellow text when inactive */
+}
+
+/* Hover state */
+.panel-heading a:hover {
+  background-color: #fabe12; /* yellow bg */
+  color: #fff; /* white text on hover */
+  text-decoration: none;
+}
+
+/* Active / Expanded panel */
+.panel-heading a:not(.collapsed) {
+  background-color: #fabe12; /* yellow bg */
+  color: #111; /* black text when expanded */
+}
+
+/* Media query for arrows */
+@media (min-width:768px) {
+  /* Default arrow (collapsed) */
+  .panel-heading a:after {
+    font-family: 'ionicons';
+    content: "\f123"; /* right arrow */
+    position: absolute;
+    right: 15px;
+    font-size: 18px;
+    color: #fabe12; /* yellow arrow when inactive */
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  /* Expanded arrow */
+  .panel-heading a:not(.collapsed):after {
+    content: "\f126"; /* down arrow */
+    color: #111; /* black when panel is open */
+  }
+  /* Arrow turns white on hover */
+.panel-heading a:hover:after {
+    color: #fff;
+}
+
+}
+
+/* Panel body */
+.panel-body {
+  padding: 20px;
+  color: #999;
+  line-height: 1.7;
+}
+
+/* Panel border */
+.panel-default {
+  border: 1px solid #fabe12; /* yellow border */
+}
+
+/* Panel heading default + hover */
+.panel-default>.panel-heading {
+  transition: all 0.4s ease-in-out;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+  border-top: 2px solid rgba(0,0,0,.1);
+}
+
+/* Panel group adjustments */
+.panel-group .panel {
+  border-radius: 0;
+  margin-bottom: -5px;
+  border-bottom: none;
+}
+
+.panel-group .panel:last-child {
+  border-bottom: 1px solid #fabe12; /* yellow border for last panel */
+}
+
+
+/* FAQ header text colors */
+.faq .title-box p {
+    color: #fabe12; /* "Frequently asked" in white */
+}
+
+.faq .title.mt0 {
+    color: #fff; /* "Questions" in white */
+}
+
+.faq .inner-p {
+    color: #999; /* Paragraph text in white */
+}
+
+
+
+
+/*======================================================================
+##		Shop
+=======================================================================*/
+.img-full{
+	width: 100%;
+}
+.shop-box{
+	position: relative;
+	overflow: hidden;
+}
+/* ADD THIS: Image sizing for 3-per-row */
+.shop-box img.img-responsive {
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
+.shop-box-hover{
+	position: absolute;
+	left: -90%;
+	top: -90%;
+	background-color: #fabe12;
+	width: 100%;
+	height: 100%;
+	transition: all 0.4s ease-in-out;
+}
+.shop-box:hover .shop-box-hover{
+	top: 0;
+	left: 0;
+}
+.shop-box-hover .c-cell a{
+	font-size: 22px; /* Reduced from 25px */
+	color: #111;
+	transition: all 0.4s ease-in-out;
+	padding: 6px; /* Reduced from 8px */
+}
+.shop-box-hover .c-cell a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+.shop-box-title{
+	font-family: 'Roboto';
+	text-transform: uppercase;
+	padding: 30px 0;
+	margin-bottom: 50px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.shop-box-title h4{
+	margin: 0 0 5px 0;
+	font-weight: 700;
+}
+.shop-price{
+	margin-bottom: 0;
+	font-weight: 500;
+}
+.star{
+	margin: 0;
+	color: #fabe12;
+}
+@media (min-width: 768px){
+	.shop-price, .star{
+		text-align: right;
+	}
+}
+.pager li>a, .pager li>span{
+	border-radius: 0;
+	color: #111;
+}
+.pager li>a:focus, .pager li>a:hover{
+	color: #fff;
+	border-color: #fabe12;
+	background-color: #fabe12;
+}
+
+/* Responsive adjustments for 3-per-row */
+@media (max-width: 992px) {
+    .shop-box img.img-responsive {
+        height: 160px;
+    }
+}
+@media (max-width: 768px) {
+    .shop-box img.img-responsive {
+        height: 140px;
+    }
+    .shop-box-hover .c-cell a {
+        font-size: 20px;
+        padding: 4px;
+    }
+}
+@media (max-width: 576px) {
+    .col-sm-4 {
+        width: 100%;
+    }
+    .shop-box img.img-responsive {
+        height: 200px;
+    }
+}
+
+
+
+        /*======================================================================
+        ##		Sloped Tab Buttons
+        =======================================================================*/
+
+        /* Container for all tab buttons */
+        .tab-buttons-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0 40px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        /* BASE STYLES for all tab buttons - DEFAULT STATE */
+        .tab-btn {
+            position: relative;
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fabe12;
+            background-color: #3A6EA5;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+            min-width: 160px;
+            text-align: center;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            box-shadow: 
+                inset 0 0 0 2px #fabe12,
+                0 0 0 2px #fabe12;
+        }
+
+        /* LEFT BUTTON: Square left, diagonal from top-right to bottom-right */
+        .tab-btn-left {
+            clip-path: polygon(0% 0%, 100% 0%, calc(100% - 45px) 100%, 0% 100%);
+            margin-right: -23px;
+            z-index: 1;
+        }
+
+        /* MIDDLE BUTTON: Diagonal both sides */
+        .tab-btn-middle {
+            clip-path: polygon(45px 0%, 100% 0%, calc(100% - 45px) 100%, 0% 100%);
+            transform: translateY(7.7px);
+            margin: 0 -23px;
+            z-index: 1;
+        }
+
+        /* RIGHT BUTTON: Diagonal left, square right */
+        .tab-btn-right {
+            clip-path: polygon(45px 0%, 100% 0%, 100% 100%, 0% 100%);
+            margin-left: -23px;
+            z-index: 1;
+        }
+
+        /* HOVER STATE - All buttons */
+        .tab-btn:hover {
+            color: #fff;
+            background-color: #fabe12;
+            z-index: 3;
+            box-shadow: 
+                inset 0 0 0 2px #fabe12,
+                0 0 0 2px #fabe12;
+        }
+
+        /* FIRST BUTTON SPECIAL HOVER FIX */
+        .tab-btn-left:hover {
+            color: #fff, !important;
+            background-color: #fabe12, !important;
+            z-index: 3 !important;
+            box-shadow: 
+                inset 0 0 0 2px #fabe12, 
+                0 0 0 2px #fabe12; 
+        }
+
+        /* ACTIVE/SELECTED STATE - Only for .active class */
+        .tab-btn.active {
+            background-color: #fabe12;
+            color: #fff;
+            z-index: 4;
+            box-shadow: 
+                inset 0 0 0 2px #fff,
+                0 0 0 2px #fabe12;
+        }
+
+        /* Hide mod sections by default */
+        .mod-section {
+            display: none;
+        }
+
+        /* Show active mod section */
+        .mod-section.active {
+            display: block;
+        }
+
+        /* For responsive design */
+        @media (max-width: 768px) {
+            .tab-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                font-size: 20px;
+                padding: 12px 30px;
+                min-width: 200px;
+                margin: 2px 0 !important;
+                clip-path: none !important;
+            }
+        }
+
+
+
+
+
+/*======================================================================
+/* Dynamic Game Banner (matches homepage style) */
+
+
+
+
+.dynamic-game-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.dynamic-game-banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    z-index: 1;
+}
+
+.dynamic-game-banner .col-sm-12 {
+    position: relative;
+    z-index: 2;
+}
+
+.dynamic-game-banner .title-box {
+    text-align: center;
+    padding: 0;
+}
+
+.dynamic-game-banner .title-box p,
+.dynamic-game-banner .title-box .title,
+.dynamic-game-banner .title-box p:last-child {
+    color: #fff !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.dynamic-game-banner .title-box .title {
+    font-size: 48px !important;
+    font-weight: 400 !important;
+    margin-bottom: 10px !important;
+}
+
+.dynamic-game-banner .title-box p:last-child {
+    font-size: 18px;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Default banners for each game - ADD YOUR IMAGE PATHS */
+#game-banner.sims1-banner {
+    background-image: url('/assets/images/banners/sims1-banner.png');
+}
+
+#game-banner.wip1-banner {
+    background-image: url('assets/images/banners/wip1-banner.png');
+}
+
+#game-banner.wip2-banner {
+    background-image: url('assets/images/banners/wip2-banner.png');
+}
+
+#game-banner.wip3-banner {
+    background-image: url('assets/images/banners/wip3-banner.png');
+}
+
+#game-banner.wip4-banner {
+    background-image: url('assets/images/banners/wip4-banner.png');
+}
+
+#game-banner.wip5-banner {
+    background-image: url('assets/images/banners/wip5-banner.png');
+}
+
+#game-banner.wip6-banner {
+    background-image: url('assets/images/banners/wip6-banner.png');
+}
+
+/* Fallback if no image */
+#game-banner.default-banner {
+    background-image: url('assets/images/banners/default-banner.jpg');
+    background-color: #2a2a2a; /* Dark fallback */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .dynamic-game-banner {
+        min-height: 250px;
+        padding: 60px 0;
+    }
+    
+    .dynamic-game-banner .title-box .title {
+        font-size: 40px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dynamic-game-banner {
+        min-height: 200px;
+        padding: 40px 0;
+    }
+    
+    .dynamic-game-banner .title-box .title {
+        font-size: 32px !important;
+    }
+    
+    .dynamic-game-banner .title-box p:last-child {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*======================================================================
+##		SINGLE MOD LAYOUT
+=======================================================================*/
+
+/* Single Mod Layout */
+.mod-item {
+    background: #333;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.mod-image-container {
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(250, 190, 18, 0.3));
+}
+
+
+/* Enhanced Hover Overlay with Large Cloud Icon */
+.shop-box-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(250, 190, 18, 0.75); /* Semi-transparent yellow overlay */
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop-box:hover .shop-box-hover {
+    opacity: 1;
+}
+
+/* Large Cloud Download Icon */
+.mod-download-main {
+    display: inline-block;
+    font-size: 72px !important; /* Much larger icon */
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+}
+
+.mod-download-main .ion-ios-cloud-download-outline {
+    display: block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Optional: Add a subtle animation */
+.mod-download-main:hover .ion-ios-cloud-download-outline {
+    transform: translateY(-5px);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Add a subtle pulse animation on hover */
+@keyframes subtle-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.mod-download-main:hover {
+    animation: subtle-pulse 0.6s ease;
+}
+
+/* Ensure the image is still visible through overlay */
+.shop-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.shop-box img {
+    transition: transform 0.5s ease;
+}
+
+.shop-box:hover img {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.mod-basic-info {
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+    background:#111;   /*BOX HEADER */
+}
+
+.mod-basic-info h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 28px;
+}
+
+.mod-description-short {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.mod-meta {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #777;
+}
+
+.mod-meta span {
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.mod-meta strong {
+    color: #555;
+    font-weight: 500;
+}
+
+/* REMOVED: .mod-quick-actions styles (no longer needed) */
+/* Accordion Styling */
+.mod-details-accordion {
+    padding: 0 25px 25px;
+}
+
+.mod-details-accordion .panel {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+/* Container NEVER reacts to hover */
+.mod-details-accordion .panel-heading {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 0;
+}
+
+.mod-details-accordion .panel-title {
+    font-size: 16px;
+}
+
+/* The actual interactive surface */
+.mod-details-accordion .panel-title a {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid transparent; /* prevents layout shift */
+}
+
+
+/* SELECTED / OPEN: yellow background, white text */
+.mod-details-accordion .panel-title a:not(.collapsed) {
+    background-color: #fabe12;
+    border-color: #fabe12;
+    color: #fff !important;
+}
+
+/* Keep text white when hovering an open item */
+.mod-details-accordion .panel-title a:not(.collapsed):hover {
+    color: #fff !important;
+}
+
+/* Icons */
+.mod-details-accordion .panel-title a.collapsed::after {
+    content: '\f218'; /* ion-ios-plus-outline */
+    font-family: 'Ionicons';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #fff;
+}
+
+.mod-details-accordion .panel-title a:not(.collapsed)::after {
+    content: '\f209'; /* ion-ios-minus-outline */
+    font-family: 'Ionicons';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #fff;
+}
+
+.mod-details-accordion .panel-title a .ion {
+    margin-right: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.mod-details-accordion .panel-body {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+
+.mod-details-accordion .panel-body h5 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.mod-details-accordion .panel-body ul,
+.mod-details-accordion .panel-body ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.mod-details-accordion .panel-body li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.mod-details-accordion .panel-body code {
+    background: #f8f9fa;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    color: #d63384;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .mod-basic-info .row > div {
+        margin-bottom: 15px;
+    }
+
+    .mod-download-main {
+        font-size: 56px;
+    }
+
+    .mod-meta span {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mod-download-main {
+        font-size: 48px;
+    }
+}
+
+/*======================================================================
+##		Mods COLORS (some)
+=======================================================================*/
+
+/* Mods Page Accordion Titles */
+#mods-sims1 .mod-details-accordion .panel-heading a {
+    color: #fff;          /* default inactive */
+    display: block;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#mods-sims1 .mod-details-accordion .panel-heading a:hover {
+    color: #fff;             /* hover */
+}
+
+#mods-sims1 .mod-details-accordion .panel-heading a:not(.collapsed) {
+    color: #111;             /* active / expanded */
+}
+
+
+/*======================================================================
+##		Mods COLORS
+=======================================================================*/
+/* Mods page header text colors */
+.shop .title-box p {
+    color: #fabe12; /* subtitle in yellow */
+}
+
+.shop .title.mt0 {
+    color: #fff; /* main title in white */
+}
+
+.shop .inner-p {
+    color: #999; /* paragraph text in light gray */
+}
+
+/* Mods page accordion titles - if you want to control those too */
+#mods-sims1 .mod-details-accordion .panel-heading a {
+    color: #fff; /* default inactive */
+}
+
+#mods-sims1 .mod-details-accordion .panel-heading a:hover {
+    color: #fff; /* hover */
+}
+
+#mods-sims1 .mod-details-accordion .panel-heading a:not(.collapsed) {
+    color: #111; /* active / expanded */
+}
+
+
+
+/*======================================================================
+##		Contact
+=======================================================================*/
+.map_canvas{
+	width: 100%;
+	height: 400px;
+	margin-bottom: 30px;
+}
+.contact h4, .contact h5{
+	font-family: 'Roboto';
+	text-transform: uppercase;
+	font-weight: 400;
+}
+.contact h5{
+	margin: 0;
+}
+.contact h4{
+	padding: 40px 0 30px;
+}
+.contact-detail{
+	border-bottom: 1px solid #ddd;
+	text-transform: uppercase;
+	padding: 10px 0 15px;
+	font-size: 10px;
+	font-weight: 500;
+	margin-bottom: 30px;
+}
+.contact-form .form-control{
+	border-color: transparent;
+	border-bottom: 1px solid #ddd;
+	border-radius: 0;
+	box-shadow: none;
+	font-family: 'Roboto';
+	padding-left: 0;
+}
+.contact-form .form-control:active, .contact-form .form-control:focus{
+	border-bottom: 1px solid #fabe12;
+	box-shadow: none;
+}
+
+/*Turn off Google Map zooming*/
+/******************************/
+.scrolloff {
+    pointer-events: none;
+}
+/*placeholder style*/
+/*******************/
+.contact-form ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	text-transform: uppercase;
+	font-family: 'Roboto';
+}
+.contact-form ::-moz-placeholder { /* Firefox 19+ */
+	text-transform: uppercase;
+	font-family: 'Roboto';
+}
+.contact-form :-ms-input-placeholder { /* IE 10+ */
+	text-transform: uppercase;
+	font-family: 'Roboto';
+}
+.contact-form :-moz-placeholder { /* Firefox 18- */
+	text-transform: uppercase;
+	font-family: 'Roboto';
+}
+
+/*======================================================================
+##		Contact COLORS
+=======================================================================*/
+
+/* Contact page header text colors */
+.contact .title-box p {
+    color: #fabe12; /* subtitle */
+}
+
+.contact .title.mt0 {
+    color: #fff; /* main title */
+}
+
+.contact .inner-p {
+    color: #999; /* paragraph text */
+}
+
+/* Lower sections */
+.contact .boxed h4 {
+    color: #fff; /* "Message for us", "Contact details" */
+}
+
+.contact input::placeholder,
+.contact textarea::placeholder {
+    color: #999; /* placeholder text */
+    opacity: 1;
+}
+
+.contact h5 {
+    color: #fff; /* subheaders in contact details */
+}
+
+.contact .contact-detail {
+    color: #999; /* paragraph info text */
+}
+
+
+
+/*======================================================================
+##		AND MORE SECTION - HORIZONTAL VERSION
+=======================================================================*/
+
+.and-more-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 40px 20px;
+    background: rgba(17, 17, 17, 0.9);
+    border: 3px solid #fabe12;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.and-more-title {
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 15px 0;
+    line-height: 1.1;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.and-more-title .highlight {
+    color: #fabe12;
+    font-size: 46px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.and-more-subtitle {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    opacity: 0.9;
+}
+
+.and-more-cta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.and-more-cta .btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    border-width: 2px;
+    min-width: 220px;
+}
+
+.and-more-cta .ion {
+    margin-right: 8px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .and-more-section {
+        padding: 30px 15px;
+    }
+    
+    .and-more-title {
+        font-size: 36px;
+    }
+    
+    .and-more-title .highlight {
+        font-size: 40px;
+    }
+    
+    .and-more-subtitle {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .and-more-section {
+        padding: 25px 15px;
+        margin: 30px 0;
+    }
+    
+    .and-more-title {
+        font-size: 32px;
+    }
+    
+    .and-more-title .highlight {
+        font-size: 36px;
+        display: block;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    .and-more-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .and-more-cta .btn {
+        min-width: 200px;
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 576px) {
+    .and-more-title {
+        font-size: 28px;
+    }
+    
+    .and-more-title .highlight {
+        font-size: 32px;
+    }
+    
+    .and-more-subtitle {
+        font-size: 14px;
+    }
+    
+    .and-more-cta .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+
+
+
+
+
+
+/*======================================================================
+##		Contact
+=======================================================================*/
+/*Service*/
+/*********/
+.service{
+	padding-bottom: 60px;
+}
+.service-box{
+	margin-bottom: 60px;
+}
+.service-box p{
+	font-size: 13px;
+	font-weight: 400;
+	color: #969595;
+	margin-bottom: 0;
+}
+.service-title{
+	display: table;
+	font-family: 'Roboto';
+	font-size: 22px;
+	padding: 10px 0;
+	text-transform: capitalize;
+}
+.service-title .icon span{
+	font-size: 40px;
+	color: #fabe12;
+	margin-right: 15px;
+}
+.service-title div{
+	display: table-cell;
+	vertical-align: middle;
+}
+/* Machine Man */
+/**************/
+.machine-man{
+	background-color: #393835;
+	color: #fff;
+	font-family: 'Roboto';
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.m-s-title,
+.m-p-title{
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+
+.m-s-title{
+	color: #fabe12;
+	margin: 0;
+	padding-top: 100px;
+}
+
+.m-p-title{
+	text-transform: capitalize;
+	margin: 0 0 20px;
+}
+
+.machine-man p{
+	margin-bottom: 100px;
+}
+
+
+
+
+
+
+/* Machine Man */
+/**************/
+.machine-man{
+	background-color: #393835;
+	color: #fff;
+	font-family: 'Roboto';
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.m-s-title,
+.m-p-title{
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+
+.m-s-title{
+	color: #fabe12;
+	margin: 0;
+	padding-top: 100px;
+}
+
+.m-p-title{
+	text-transform: capitalize;
+	margin: 0 0 20px;
+}
+
+.machine-man p{
+	margin-bottom: 100px;
+}
+
+/* Mobile spacing */
+@media (max-width: 677px){
+	.machine-man{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+/* Desktop / Tablet */
+@media (min-width: 678px){
+	.machine-man .boxed{
+		padding: 0 95px;
+	}
+
+	.machine-man .row{
+		position: relative;
+		min-height: 520px; /* CRITICAL FIX */
+		background-image: url(../images/machine-man.png);
+		background-repeat: no-repeat;
+		background-position: right 60px bottom 60px;
+		background-size: 320px 320px;
+	}
+
+	/* Arcane display frame */
+	.machine-man .row::before{
+		content: "";
+		position: absolute;
+		right: 60px;
+		bottom: 60px;
+		width: 320px;
+		height: 320px;
+		border: 2px solid rgba(250, 190, 18, 0.55);
+		border-radius: 14px;
+		box-shadow:
+			0 0 25px rgba(250, 190, 18, 0.3),
+			inset 0 0 18px rgba(250, 190, 18, 0.2);
+		pointer-events: none;
+	}
+
+	/* Soft magical glow */
+	.machine-man .row::after{
+		content: "";
+		position: absolute;
+		right: 60px;
+		bottom: 60px;
+		width: 320px;
+		height: 320px;
+		background: radial-gradient(
+			circle,
+			rgba(250, 190, 18, 0.35) 0%,
+			rgba(250, 190, 18, 0.15) 40%,
+			transparent 75%
+		);
+		pointer-events: none;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+/*Team*/
+/******/
+.team-box{
+	position: relative;
+	width: 100%;
+	margin-bottom: 60px;
+}
+.team-img-detail{
+	font-family: 'Roboto';
+	text-align: center;
+	position: absolute;
+	width: 55%;
+	right: 0;
+	background-color: #f7f7f7;
+	color: #999;
+	/*padding: 20px;*/
+}
+.team-img-detail h4{
+	color: #111;
+	padding-top: 30px;
+}
+.team-img-detail h4, .team-img-detail h5{
+	text-transform: uppercase;
+	font-weight: 400;
+	letter-spacing: 2px;
+	margin: 0;
+}
+.team-img-detail p{
+	padding: 20px;
+}
+.social {
+ 	font-size: 24px;
+	float: right;
+	background-color: #fabe12;
+	padding: 5px;
+}
+.social a {
+	color: #fff;
+	padding: 8px;
+}
+@media (max-width: 767px){
+	.team-img{
+		width: 100%;
+	}
+}
+/*CTA*/
+/*****/
+.cta{
+	background-color: #393835;
+	color: #fff;
+	margin-left: -15px;
+	margin-right: -15px;
+	padding: 40px 0;
+}
+.cta .btn-robot{
+	color: #393835;
+	font-size: 16px;
+	font-weight: 700;
+	margin-top: 10px;
+}
+.cta .btn-robot:hover{
+	color: #fabe12;
+}
+@media (max-width: 677px){
+	.cta{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+
+
+/* Make all wizard images the same size and stretch to fit */
+.panel-body img {
+    width: 100%;      /* stretch to fill the container width */
+    height: 500px;    /* fixed height for uniformity */
+    object-fit: cover; /* crop/stretch image proportionally */
+    display: block;    /* remove inline spacing */
+    margin: 10px 0;    /* spacing above/below image */
+}
