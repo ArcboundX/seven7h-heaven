@@ -324,7 +324,7 @@
                                             <div class="c-table">
                                                 <div class="c-cell">
                                                     <!-- Single large download icon in center -->
-                                                            <a href="assets/downloads/TS1/TS1-Relationship-Rate-Rebalance-1-0.zip"
+                                                            <a href="https://github.com/arcboundx/seven7h-heaven/releases/latest/download/TS1-Relationship-Rate-Rebalance-1-0.zip"
                                                             class="mod-download-main"
                                                             download
                                                             title="Download"
@@ -574,6 +574,29 @@
 </div>
 </section>
 
+
+<!-- Download Counter Managers -->                           
+<script>
+async function loadGitHubDownloads() {
+    const repo = "arcboundx/seven7h-heaven";
+    const response = await fetch(
+        `https://api.github.com/repos/${repo}/releases/latest`
+    );
+    const data = await response.json();
+
+    const asset = data.assets.find(a =>
+        a.name === "TS1-Relationship-Rate-Rebalance-1-0.zip"
+    );
+
+    if (!asset) return;
+
+    document.querySelectorAll(".download-count").forEach(el => {
+        el.textContent = asset.download_count.toLocaleString();
+    });
+}
+
+document.addEventListener("DOMContentLoaded", loadGitHubDownloads);
+</script>
 
 
 
